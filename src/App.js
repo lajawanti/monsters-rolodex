@@ -11,7 +11,7 @@ class App extends React.Component {
     super();
     this.state = {
       monsters: [],
-      seachField : ''
+      searchField : ''
     }
   }
 
@@ -25,7 +25,10 @@ class App extends React.Component {
   }
 
   render() {
-    //console.log("this.state.monsters   :  ",this.state.monsters)
+    const { monsters, searchField } = this.state;
+    const filteredMonseters =  monsters.filter(monster => 
+                              monster.name.toLowerCase().includes(searchField.toLowerCase())); 
+    
     return (
       <div className="App">
           {/* <input
@@ -38,10 +41,10 @@ class App extends React.Component {
 
         <SearchBox 
             placeholder = 'search monster'
-            handleChange = {(e) => {this.setState({ seachField : e.target.value })}}
+            handleChange = {(e) => {this.setState({ searchField : e.target.value })}}
         />
         <CardList
-            monsters = {this.state.monsters}
+            monsters = {filteredMonseters}
         />  
       </div> 
     );
